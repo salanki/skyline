@@ -47,6 +47,13 @@ def alert_smtp(alert, metric):
         s.quit()
 
 
+def alert_pushnotify(alert, metric):
+    import pushnotify
+    client = pushnotify.get_client(settings.PUSHNOTIFY_OPTS['protocol'], application='skyline')
+    for x in settings.PUSHNOTIFY_OPTS['keys']:
+        client.add_key(x)
+    client.notify("%s (value: %s)" % (metric[1], metric[0]), "Anomalous metric")
+
 def alert_pagerduty(alert, metric):
     import pygerduty
     pager = pygerduty.PagerDuty(settings.PAGERDUTY_OPTS['subdomain'], settings.PAGERDUTY_OPTS['auth_token'])

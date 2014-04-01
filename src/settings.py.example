@@ -154,6 +154,12 @@ PAGERDUTY_OPTS = {
     "key": "your_pagerduty_service_api_key",
 }
 
+# PushNotify alerts require py-pushnotify
+PUSHNOTIFY_OPTS = {
+    # Your pagerduty subdomain and auth token
+    "protocol": "prowl",
+    "keys": ["YOUR-KEY-HERE"]
+}
 
 """
 Horizon settings
